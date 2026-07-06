@@ -134,40 +134,6 @@ DISPARADOR: el usuario abre el chat y ve una bienvenida automática
 
 ---
 
-## 📂 Estructura del repositorio
-
-sintonia/
-
-├── README.md                       ← este archivo
-
-├── sintonia\_dify\_chatflow.yml      ← el flujo completo, listo para importar
-
-├── informe/
-
-│   └── Informe\_SintonIA.pdf        ← informe escrito del TP
-
-├── docs/
-
-│   ├── proceso-antes.md            ← diagnóstico de CheTunes
-
-│   ├── proceso-ahora.md            ← diseño de SintonIA
-
-│   └── diagramas/                  ← flujos antes/después
-
-└── evolucion/                      ← versiones intermedias del flujo (v1 → v4)
-
-    ├── v1\_flujo\_base.yml
-
-    ├── v2\_sin\_greeting.yml
-
-    ├── v3\_ids\_corregidos.yml
-
-    └── v4\_final\_con\_memoria.yml
-
-💡 La carpeta `evolucion/` muestra el proceso de trabajo, no solo el resultado: cada versión corrigió un problema concreto detectado en la anterior.
-
----
-
 ## 🔄 Evolución del proyecto (proceso de trabajo)
 
 El flujo no salió bien de una. Estas fueron las iteraciones y qué corrigió cada una:
