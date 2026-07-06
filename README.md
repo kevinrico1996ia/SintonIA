@@ -12,7 +12,7 @@
 
 Este repositorio documenta el **rediseño de un proceso de descubrimiento musical**. El proceso ya existía de forma digital: en diciembre de 2025 desarrollé **CheTunes**, una app web con IA generativa (Google Gemini) que recomendaba música, identificaba portadas de álbumes por foto y analizaba letras.
 
-CheTunes funcionaba, pero tenía una fricción de fondo: era una **experiencia de "un solo disparo"**. Cada función era un formulario aislado, sin memoria. El usuario cargaba todo su contexto de golpe, recibía una respuesta cerrada y, para ajustar algo, empezaba de cero.
+CheTunes funcionaba, pero cada recomendación era un formulario aislado, sin memoria. El usuario cargaba todo su contexto de golpe, recibía una respuesta cerrada y, para ajustar algo, empezaba de cero.
 
 **SintonIA** es la reingeniería de ese mismo proceso, ahora como un **flujo conversacional continuo con memoria de contexto**, construido sobre **Dify** (Chatflow) con `gpt-4o-mini`.
 
@@ -154,12 +154,12 @@ El flujo no salió bien de una. Estas fueron las iteraciones y qué corrigió ca
 - **🔒 Protección** — Conversación efímera, sin datos personales sensibles; ejecuciones trazables en los logs de Dify.  
 - **🎛️ Control** — Diseño humano de las reglas; la IA solo sugiere, nunca ejecuta acciones irreversibles; flujo auditable nodo por nodo.
 
-El análisis completo está en el [informe PDF](http://./informe/Informe_SintonIA.pdf).
+- El análisis completo está en el [informe PDF](https://drive.google.com/drive/u/0/folders/1GQzkDonCHkE8PyhZ8z2TLAmIVzk8naTp).
+- [Podcast](https://drive.google.com/file/d/1NgXb1rg5Yg_Nh2giqMU3DYGsRbM_aDc4/view?usp=drive_link) del análisis del proceso
+
 
 ---
 
 ## 📝 Licencia y créditos
 
-Proyecto académico desarrollado para la Diplomatura en Diseño de Procesos de Negocios de la FCE-UBA (Cohorte 2026).
-
-*"De una web que respondía una vez, a una conversación que acompaña. Ese fue el verdadero rediseño."*  
+Proyecto académico desarrollado para la Diplomatura en Diseño de Procesos de Negocios de la FCE-UBA (Primera Cohorte del 2026). 
