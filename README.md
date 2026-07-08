@@ -126,6 +126,7 @@ DISPARADOR: el usuario abre el chat y ve una bienvenida automática
 5. En el nodo **Análisis de Letras**, confirmá que el modelo sea **Gemini 2.5 Flash** y que la opción **Grounding** esté en **True** (es lo que activa la búsqueda web).  
 6. En el nodo **Identificación de Portadas**, confirmá que la opción **Vision** esté activada.  
 7. Ejecutá la vista previa y probá los casos de test de abajo.
+8. Tambien podes probar el chat desde la Web de [**CheTunes**](https://chetunes-ai-68023813385.us-west2.run.app/)
 
 ### Casos de prueba
 
