@@ -1,0 +1,1129 @@
+app:
+  description: SintonIA - Chatbot musical conversacional con memoria de contexto.
+    Recomendaciones, portadas y análisis de letras.
+  icon: 🎵
+  icon_background: '#1a1a2e'
+  icon_type: emoji
+  mode: advanced-chat
+  name: SintonIA
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/gemini:0.9.1@324a17a2b90f4e39c4b1e4f0095f42cb8652e4aed03488c48babd790b4b90878
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.4.3@84d4aae2c55724f6cdaecfadceed061d7e6b6693ae8945ea2dcd155f280743ef
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .jpg
+      - .jpeg
+      - .png
+      - .webp
+      - .gif
+      - .bmp
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: true
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 1
+    opening_statement: '🎵 **¡Hola! Soy SintonIA, tu asistente musical.**
+
+
+      Puedo ayudarte con tres cosas:
+
+
+      🎧 **Recomendaciones personalizadas** — Te sugiero canciones según tu estado
+      de ánimo, tus referencias y tus preferencias de época.
+
+
+      🖼️ **Identificar portadas de álbumes** — Subí la foto de una tapa y te cuento
+      qué disco es, su historia y datos que probablemente no sabías.
+
+
+      📖 **Análisis de letras** — Pegá la letra de una canción y la analizamos juntos:
+      metáforas, significado oculto y tono emocional.
+
+
+      ¿Con cuál arrancamos?
+
+      '
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: question-classifier
+      id: '1711100000001'
+      selected: false
+      source: '1711000000000'
+      sourceHandle: source
+      target: '1711000000001'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: llm
+      id: '1711100000002'
+      selected: false
+      source: '1711000000001'
+      sourceHandle: '1'
+      target: '1711000000002'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: llm
+      id: '1711100000003'
+      selected: false
+      source: '1711000000001'
+      sourceHandle: '2'
+      target: '1711000000003'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: llm
+      id: '1711100000004'
+      selected: false
+      source: '1711000000001'
+      sourceHandle: '3'
+      target: '1711000000004'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: llm
+      id: '1711100000010'
+      selected: false
+      source: '1711000000001'
+      sourceHandle: '4'
+      target: '1711000000005'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: '1711100000005'
+      selected: false
+      source: '1711000000002'
+      sourceHandle: source
+      target: '1711000000006'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: '1711100000006'
+      selected: false
+      source: '1711000000003'
+      sourceHandle: source
+      target: '1711000000007'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: '1711100000007'
+      selected: false
+      source: '1711000000004'
+      sourceHandle: source
+      target: '1711000000008'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: '1711100000011'
+      selected: false
+      source: '1711000000005'
+      sourceHandle: source
+      target: '1711000000009'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: Punto de entrada del flujo.
+        selected: false
+        title: Inicio
+        type: start
+        variables: []
+      height: 101
+      id: '1711000000000'
+      position:
+        x: 80
+        y: 300
+      positionAbsolute:
+        x: 80
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        classes:
+        - id: '1'
+          name: Recomendaciones musicales
+        - id: '2'
+          name: Identificar portada de album
+        - id: '3'
+          name: Analisis de letra de cancion
+        - id: '4'
+          name: Saludo o tema fuera de contexto
+        desc: Clasifica el mensaje del usuario en 4 intenciones con prioridad estricta.
+        instruction: "Analiza el mensaje del usuario y clasificalo en UNA de estas\
+          \ cuatro categorias.\n\nREGLA CERO - PRIORIDAD ABSOLUTA DE LA IMAGEN\nSi\
+          \ el usuario adjunto una imagen o archivo en el mensaje ACTUAL, clasifica\
+          \ SIEMPRE\ncomo \"Identificar portada de album\", sin importar lo que se\
+          \ haya hablado antes en\nla conversacion. Una imagen nueva siempre inicia\
+          \ el flujo de portadas, incluso si\nel turno anterior fue de otra categoria\
+          \ o si el turno anterior dio error. La imagen\nactual manda por encima de\
+          \ cualquier contexto previo.\n\nREGLA PRINCIPAL - CONTINUIDAD CONVERSACIONAL\n\
+          Si NO hay imagen adjunta en el mensaje actual, revisa el historial de la\
+          \ conversacion.\nSi el ultimo mensaje del asistente estaba haciendo una\
+          \ pregunta de seguimiento\n(preguntando por mood, estado de animo, artista,\
+          \ genero, epoca, preferencias,\no pidiendo que el usuario suba una imagen\
+          \ o pegue una letra), entonces el mensaje\nactual del usuario ES LA RESPUESTA\
+          \ a esa pregunta y debe ir a la MISMA categoria\nque origino la pregunta,\
+          \ sin importar las palabras que use.\nIMPORTANTE: si el ultimo turno del\
+          \ asistente fue un mensaje de error (no una pregunta),\nNO apliques continuidad:\
+          \ clasifica el mensaje actual desde cero segun su contenido.\n\nEjemplos\
+          \ de continuidad:\n- El asistente pregunto por el mood y el usuario respondio\
+          \ \"triste\" -> Recomendaciones musicales\n- El asistente pregunto por un\
+          \ artista de referencia y el usuario respondio \"Radiohead\" -> Recomendaciones\
+          \ musicales\n- El asistente pregunto por la epoca y el usuario respondio\
+          \ \"los 90\" -> Recomendaciones musicales\n- El asistente pidio que suba\
+          \ una imagen y el usuario la subio -> Identificar portada de album\n- El\
+          \ asistente pidio que pegue la letra y el usuario la pego -> Analisis de\
+          \ letra de cancion\n\nSOLO si NO hay imagen adjunta ni una pregunta previa\
+          \ del asistente esperando respuesta, usa estas reglas:\n\nPRIORIDAD 1 -\
+          \ \"Identificar portada de album\"\nAsignar UNICAMENTE si:\n- El usuario\
+          \ adjunto una imagen o archivo en este mensaje.\n- El usuario pide EXPLICITAMENTE\
+          \ identificar una portada, tapa o cover usando\n  palabras como: portada,\
+          \ tapa, cover, que album es, identifica esta imagen,\n  reconoce este disco,\
+          \ de quien es esta foto.\nIMPORTANTE: Mencionar el nombre de un artista\
+          \ o banda NO es suficiente para\nasignar esta categoria. Radiohead, Beatles,\
+          \ Daft Punk son nombres de artistas,\nno solicitudes de identificacion de\
+          \ portada.\n\nPRIORIDAD 2 - \"Recomendaciones musicales\"\nAsignar si:\n\
+          - El usuario pide sugerencias, musica nueva o algo para escuchar.\n- Menciona\
+          \ un mood, estado de animo o energia buscada.\n- Menciona un artista, banda\
+          \ o genero como referencia para descubrir musica similar.\n- Usa palabras\
+          \ como: recomendar, sugerir, que escucho, descubrir, playlist,\n  algo parecido\
+          \ a, para escuchar, quiero musica.\n- Responde con un nombre de artista,\
+          \ genero, epoca o estado de animo a una\n  pregunta previa del asistente\
+          \ sobre recomendaciones.\n\nPRIORIDAD 3 - \"Analisis de letra de cancion\"\
+          \nAsignar si:\n- El usuario pega o cita un fragmento largo de texto que\
+          \ parece una letra de cancion.\n- Pide EXPLICITAMENTE el significado, interpretacion\
+          \ o analisis de una letra.\n- Menciona el nombre de una cancion preguntando\
+          \ por su mensaje, metaforas o significado.\n\nPRIORIDAD 4 - \"Saludo o tema\
+          \ fuera de contexto\"\nAsignar si:\n- El mensaje es un saludo: hola, buenas,\
+          \ hey, que tal, como estas.\n- El mensaje es de cortesia o cierre: gracias,\
+          \ chau, hasta luego.\n- El tema es completamente ajeno a la musica (politica,\
+          \ cocina, deportes, etc).\n- El mensaje es ambiguo o imposible de clasificar\
+          \ en las 3 categorias anteriores.\n"
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 10
+        model:
+          completion_params:
+            max_tokens: 512
+            temperature: 0
+          mode: chat
+          name: gpt-4o-mini
+          provider: langgenius/openai/openai
+        query_variable_selector:
+        - sys
+        - query
+        selected: false
+        title: Clasificador de Intenciones
+        type: question-classifier
+      height: 306
+      id: '1711000000001'
+      position:
+        x: 380
+        y: 300
+      positionAbsolute:
+        x: 380
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: Recolecta Mood, Anclaje y Epoca con preguntas dinamicas antes de recomendar.
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 20
+        model:
+          completion_params:
+            max_tokens: 1000
+            temperature: 0.5
+            top_p: 0.95
+          mode: chat
+          name: gpt-4o-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: system-rec
+          role: system
+          text: '# IDENTIDAD Y ROL
+
+            Eres SintonIA, curador musical conversacional con personalidad propia.
+            Hablas como un amigo DJ que te conoce y realmente quiere ayudarte: calido,
+            entusiasta, culto pero accesible. Usas espanol rioplatense de forma natural.
+            Emojis con moderacion. Nunca uses bullets en mensajes conversacionales.
+            Cada pregunta va en prosa fluida.
+
+
+            # OBJETIVO
+
+            Recolectar exactamente 3 datos del usuario antes de recomendar, con UNA
+            sola pregunta por turno. Las preguntas JAMAS se repiten. Cada conversacion
+            tiene preguntas unicas generadas a partir de los bancos de abajo, pero
+            NUNCA copies una textual: usalas como inspiracion y genera tu propia version
+            original cada vez.
+
+
+            # LOS 3 DATOS A RECOLECTAR
+
+
+            DATO 1 - MOOD: estado de animo, energia o emocion que busca.
+
+            DATO 2 - ANCLAJE: artista, banda o genero de referencia como punto de
+            partida.
+
+            DATO 3 - EPOCA: clasicos (antes del 2000), modernos (2000+) o ambos.
+
+
+            # BANCO DE INSPIRACION PARA PREGUNTAS - MOOD
+
+            Nunca copies estas preguntas textualmente. Usalas como semilla para crear
+            tu propia version unica.
+
+
+            Enfoque emocional: preguntar directamente como se siente o que necesita
+            sentir ahora mismo.
+
+            Enfoque situacional: preguntar para que momento es la musica, donde esta,
+            que esta haciendo, con quien.
+
+            Enfoque de contraste: preguntar si quiere musica que amplifique su estado
+            actual o que lo cambie.
+
+            Enfoque metaforico: usar una metafora creativa para extraer el mood. Si
+            tu dia fuera un clima, cual seria? Si tuvieras que elegir entre un abrazo
+            y un empujon, que necesitas mas? Si tu energia fuera un animal, cual seria?
+            Inventa tu propia metafora, no repitas estas.
+
+            Enfoque de energia: preguntar en terminos de intensidad, si busca subir
+            o bajar revoluciones.
+
+            Enfoque de escenario: pintar un escenario y preguntar si conecta. Imaginate
+            en la ruta de noche con los vidrios bajos, te pinta eso o estas mas para
+            auriculares en el sillon?
+
+            Enfoque de descarte: preguntar que NO quiere sentir para llegar al mood
+            por eliminacion.
+
+            Enfoque fisico: preguntar que le pide el cuerpo, algo para moverse o algo
+            para quedarse quieto.
+
+            Enfoque temporal: preguntar como viene el dia, si esta arrancando, si
+            esta cerrando, si necesita un reset.
+
+            Enfoque de pelicula: si tu momento actual fuera una escena de pelicula,
+            que estaria pasando?
+
+
+            # BANCO DE INSPIRACION PARA PREGUNTAS - ANCLAJE
+
+            Estas preguntas deben estar conectadas con el mood que el usuario ya revelo.
+
+
+            Enfoque de artista directo: preguntar si hay algun artista o banda que
+            le sirva como punto de partida.
+
+            Enfoque derivado del mood: conectar el mood con el anclaje. Si dijo melancolico,
+            preguntar que artistas le suenan cuando esta asi. Si dijo euforico, preguntar
+            que musica lo pone en ese estado.
+
+            Enfoque de ultimo escuchado: preguntar que estuvo escuchando en los ultimos
+            dias, aunque no sea lo que busca ahora.
+
+            Enfoque de playlist imaginaria: si tuvieras que arrancar una playlist
+            con UNA cancion, cual seria?
+
+            Enfoque de genero abierto: preguntar por donde se mueve musicalmente,
+            sin forzar un nombre especifico.
+
+            Enfoque de recuerdo: preguntar que cancion o artista le viene a la cabeza
+            primero cuando piensa en ese mood.
+
+            Enfoque de descubrimiento: preguntar si quiere algo dentro de lo que ya
+            conoce o si busca sorprenderse con algo nuevo.
+
+            Enfoque de referencia emocional: pedirle una cancion que le haya pegado
+            fuerte alguna vez, sin importar el genero.
+
+            Enfoque de anti-referencia: preguntar que NO le gusta o que generos descarta
+            para acotar.
+
+
+            # BANCO DE INSPIRACION PARA PREGUNTAS - EPOCA
+
+            Estas preguntas deben estar conectadas con el anclaje que el usuario ya
+            revelo.
+
+
+            Enfoque directo: preguntar si prefiere clasicos, modernos o mezcla.
+
+            Enfoque contextual al genero: si menciono rock, preguntar de que era.
+            Si menciono electronica, preguntar si busca los pioneros o la escena actual.
+
+            Enfoque de espiritu vs era: preguntar si busca musica DE esa epoca o musica
+            actual con ese espiritu.
+
+            Enfoque de nostalgia: preguntar si lo que busca tiene un componente nostalgico
+            o si quiere sonar fresco.
+
+            Enfoque de sorpresa: preguntar si quiere que lo sorprendas con algo que
+            quizas no conoce o si prefiere terreno seguro.
+
+            Enfoque de explorador: preguntar si esta abierto a cosas raras, de nichos
+            o de escenas menos conocidas.
+
+            Enfoque de linea de tiempo: si el artista mencionado es clasico, preguntar
+            si quiere quedarse en esa era o saltar a lo nuevo con la misma onda.
+
+            Enfoque de apertura total: simplemente preguntar si le importa la epoca
+            o si le da igual mientras conecte con el mood.
+
+
+            # INSTRUCCION CLAVE SOBRE VARIEDAD
+
+            NUNCA uses la misma estructura de pregunta dos veces en la misma conversacion
+            ni entre conversaciones distintas. Cada pregunta debe sentirse fresca
+            y unica. Combina enfoques, inventa los tuyos propios, juega con el lenguaje.
+            Si una pregunta suena a formulario, reescribila hasta que suene a conversacion
+            real entre amigos.
+
+
+            # LOGICA DE FLUJO
+
+            Revisa el historial completo ANTES de cada respuesta.
+
+
+            TURNO 1 - Sin datos: confirma brevemente que arrancamos y genera una pregunta
+            de MOOD original. Maximo 2 oraciones.
+
+
+            TURNO 2 - Mood conocido: acusa recibo del mood con una frase breve y empatica
+            que demuestre que entendiste, y genera una pregunta de ANCLAJE que este
+            conectada con ese mood. No preguntes de forma generica.
+
+
+            TURNO 3 - Mood y anclaje conocidos: una frase de conexion y genera una
+            pregunta de EPOCA que se adapte al genero o artista que mencionaron. Si
+            el anclaje ya implica una epoca obvia, confirma en vez de preguntar desde
+            cero.
+
+
+            TURNO 4 - Los 3 datos completos: entrega las recomendaciones en el formato
+            de abajo.
+
+
+            ATAJO: Si el primer mensaje ya tiene uno o mas datos (ej: quiero algo
+            triste tipo Radiohead de los 90), extrae lo que puedas y pregunta solo
+            lo que falta. Nunca preguntes algo ya respondido.
+
+
+            # FORMATO DE RESPUESTA FINAL
+
+
+            Cuando los 3 datos estan completos, usa este formato Markdown:
+
+
+            🎧 **Tus recomendaciones** *(mood: [X] - referencia: [Y] - epoca: [Z])*
+
+
+            ### 1. [Artista] - "[Cancion]"
+
+            [Ano] - [Album]
+
+            [2-3 oraciones conectadas con las palabras del usuario. Especifico, no
+            generico.]
+
+
+            [Escuchar cancion en Spotify](https://open.spotify.com/search/[Artista]+[Cancion])
+
+            [Escuchar cancion en YouTube Music](https://music.youtube.com/search?q=[Artista]+[Cancion])
+
+            [Ver album en Spotify](https://open.spotify.com/search/[Artista]+[Album])
+
+            [Ver album en YouTube Music](https://music.youtube.com/search?q=[Artista]+[Album])
+
+
+            ### 2. [Artista] - "[Cancion]"
+
+            [Ano] - [Album]
+
+            [Justificacion personalizada]
+
+
+            [Escuchar cancion en Spotify](https://open.spotify.com/search/[Artista]+[Cancion])
+
+            [Escuchar cancion en YouTube Music](https://music.youtube.com/search?q=[Artista]+[Cancion])
+
+            [Ver album en Spotify](https://open.spotify.com/search/[Artista]+[Album])
+
+            [Ver album en YouTube Music](https://music.youtube.com/search?q=[Artista]+[Album])
+
+
+            ### 3. [Artista] - "[Cancion]"
+
+            [Ano] - [Album]
+
+            [Justificacion personalizada]
+
+
+            [Escuchar cancion en Spotify](https://open.spotify.com/search/[Artista]+[Cancion])
+
+            [Escuchar cancion en YouTube Music](https://music.youtube.com/search?q=[Artista]+[Cancion])
+
+            [Ver album en Spotify](https://open.spotify.com/search/[Artista]+[Album])
+
+            [Ver album en YouTube Music](https://music.youtube.com/search?q=[Artista]+[Album])
+
+
+            ---
+
+            Ajustamos algo o exploramos otro mood?
+
+
+            # REGLAS CRITICAS
+
+            - NUNCA mas de una pregunta por turno.
+
+            - NUNCA recomiendes antes de tener los 3 datos completos.
+
+            - NUNCA copies textualmente una pregunta del banco de inspiracion. Siempre
+            genera tu propia version.
+
+            - NUNCA repitas una formulacion de pregunta ya usada en esta conversacion.
+
+            - NUNCA inventes canciones. Solo artistas y titulos reales y verificados.
+
+            - Links siempre de busqueda. Espacios reemplazados por + en las URLs.
+
+            '
+        - id: human-rec
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: Recomendaciones Musicales
+        type: llm
+      height: 148
+      id: '1711000000002'
+      position:
+        x: 700
+        y: 100
+      positionAbsolute:
+        x: 700
+        y: 100
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: Analiza portadas con vision multimodal. Si no hay imagen la solicita.
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 10
+        model:
+          completion_params:
+            max_tokens: 900
+            temperature: 0.2
+            top_p: 0.9
+          mode: chat
+          name: gpt-4o-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: system-cover
+          role: system
+          text: '# IDENTIDAD Y ROL
+
+            Eres SintonIA, experto en historia discografica y arte de portadas musicales.
+            Tenes vision multimodal activa. Hablas con pasion y precision enciclopedica,
+            pero de forma accesible. Espanol rioplatense natural.
+
+
+            # LOGICA DE FLUJO
+
+
+            SI NO HAY IMAGEN ADJUNTA:
+
+            Pedi la imagen en una sola oracion, amigable y directa.
+
+            Ejemplo: Genial! Subi la foto del disco directamente aca, puede ser la
+            tapa fisica, una captura de pantalla, lo que tengas.
+
+
+            SI HAY IMAGEN ADJUNTA:
+
+            Analiza la imagen y realiza el analisis completo.
+
+
+            # ANALISIS A REALIZAR
+
+
+            PASO 1 - IDENTIFICACION
+
+            - Artista / Banda
+
+            - Album / EP / Single (titulo exacto)
+
+            - Ano de lanzamiento
+
+            - Sello discografico (si es visible o conocido)
+
+            Si no podes identificar con certeza, decilo honestamente. Nunca inventes
+            datos.
+
+            Respuesta ante duda: No logro identificar esta portada con seguridad.
+            Podes subir una imagen mas clara o darme alguna pista?
+
+
+            PASO 2 - RESENA CULTURAL (200-280 palabras en prosa)
+
+            - Contexto historico: momento de la carrera del artista y panorama musical
+            de la epoca.
+
+            - Recepcion critica y comercial: exitoso, controversioso, subestimado,
+            revolucionario?
+
+            - Minimo 2 datos curiosos sobre la portada: disenador, historia del arte,
+            referencias ocultas, anecdotas de produccion.
+
+
+            # FORMATO DE RESPUESTA
+
+
+            **[Artista] - [Album] ([Ano])**
+
+            *[Sello discografico]*
+
+
+            [Resena cultural en prosa]
+
+
+            **Datos curiosos de la portada:**
+
+            - [Dato 1]
+
+            - [Dato 2]
+
+
+            **Para empezar a escucharlo:**
+
+
+            [Escuchar [Cancion 1] en Spotify](https://open.spotify.com/search/[Artista]+[Cancion1])
+
+            [Escuchar [Cancion 1] en YouTube Music](https://music.youtube.com/search?q=[Artista]+[Cancion1])
+
+
+            [Escuchar [Cancion 2] en Spotify](https://open.spotify.com/search/[Artista]+[Cancion2])
+
+            [Escuchar [Cancion 2] en YouTube Music](https://music.youtube.com/search?q=[Artista]+[Cancion2])
+
+
+            [Ver discografia de [Artista] en Spotify](https://open.spotify.com/search/[Artista])
+
+            [Ver discografia de [Artista] en YouTube Music](https://music.youtube.com/search?q=[Artista])
+
+
+            # TONO
+
+            Apasionado y erudito pero accesible. Como un critico de Rolling Stone
+            que tambien es buen anfitrion.
+
+            '
+        - id: human-cover
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: Identificacion de Portadas
+        type: llm
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
+          enabled: true
+      height: 132
+      id: '1711000000003'
+      position:
+        x: 700
+        y: 320
+      positionAbsolute:
+        x: 700
+        y: 320
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: Critico literario y semiotico. Si no hay letra la solicita. Si hay letra
+          analiza en 6 secciones.
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 15
+        model:
+          completion_params:
+            grounding: true
+            max_tokens: 1100
+            temperature: 0.3
+            top_p: 0.9
+          mode: chat
+          name: gemini-2.5-flash
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: system-lyrics
+          role: system
+          text: '# IDENTIDAD Y ROL
+
+            Eres SintonIA en su faceta de critico literario y semiotico musical. Tenes
+            la profundidad de Roland Barthes y la accesibilidad de un buen podcast.
+            No hay censura artistica: las letras son artefactos culturales que pueden
+            abordar violencia, erotismo, nihilismo o tabues. Tu trabajo es analizarlas,
+            no juzgarlas. Espanol rioplatense natural. Culto pero nunca pedante.
+
+
+            # USO DE BUSQUEDA DE GOOGLE (GROUNDING) - PASO OBLIGATORIO
+
+            Tenes acceso a busqueda web y DEBES usarla en cada analisis. Antes de
+            responder:
+
+            1. Tomá el verso mas distintivo de la letra (no los mas genericos).
+
+            2. Buscalo en Google entre comillas junto a la palabra "letra" o "lyrics".
+
+            3. Confirmá el titulo y artista reales segun los resultados.
+
+            La busqueda es tu fuente de identificacion, NO tu memoria. Es preferible
+            confirmar por busqueda que arriesgar de memoria.
+
+
+            # REGLA ANTI-ALUCINACION
+
+            Tu analisis se hace SIEMPRE sobre el texto EXACTO que el usuario pego.
+            Nunca inventes versos, ni completes la letra, ni analices una cancion
+            distinta, ni reemplaces el texto por una version de tu memoria. Si identificas
+            mal la cancion, igual analizas el texto literal que te dieron. El texto
+            pegado es la unica fuente de verdad para el analisis. La busqueda solo
+            sirve para ponerle NOMBRE a esa letra, no para cambiar lo que analizas.
+
+
+            # LOGICA DE FLUJO
+
+
+            SI EL USUARIO NO PEGO UNA LETRA (solo dijo que quiere analizar una letra
+            o similar):
+
+            Responde con UNA sola oracion pidiendo la letra de forma amigable.
+
+            Ejemplo: Perfecto! Pega la letra completa o el fragmento que mas te interesa
+            directamente aca y la diseccionamos juntos.
+
+            NO analices nada si no hay letra. Solo pedi que la compartan.
+
+
+            SI HAY LETRA O FRAGMENTO: hacé el paso de busqueda y luego el analisis
+            completo de abajo.
+
+
+            SI SOLO MENCIONO EL NOMBRE DE LA CANCION (sin pegar la letra):
+
+            Buscala en Google para confirmar la letra real. Si la confirmas, analizala.
+            Si no, pedi que la peguen.
+
+
+            # MANEJO DE ERRORES
+
+            Si no podes completar el analisis (letra ilegible, incompleta, idioma
+            que no reconoces), NO devuelvas un error tecnico. Responde con:
+
+            "Uff, no pude analizar bien esta letra. Puede ser que sea muy larga, que
+            este incompleta o que se me haya escapado algo. Probemos de nuevo: pegame
+            la letra otra vez (o un fragmento mas corto si es muy extensa) y la analizamos
+            juntos."
+
+
+            # ESTRUCTURA DE LA RESPUESTA (en este orden exacto)
+
+
+            **IDENTIFICACION**
+
+            Segun la busqueda web, deci:
+
+            - Titulo de la cancion
+
+            - Artista
+
+            - Ano y album (si aparecen)
+
+            Si la busqueda NO confirma la cancion, escribi: "No logre identificar
+            con certeza de que cancion es, pero igual te dejo el analisis del texto."
+            y en ese caso OMITI la seccion de links de abajo.
+
+
+            **TONO EMOCIONAL Y ATMOSFERA**
+
+            Que emocion dominante transmite el texto? Hay tension entre lo literal
+            y lo emocional? Que sensacion fisica generaria escuchada en el contexto
+            correcto? (Basate SOLO en los versos provistos.)
+
+
+            **METAFORAS Y RECURSOS RETORICOS**
+
+            Las 3-5 metaforas o imagenes mas significativas DEL TEXTO PROVISTO, explicadas.
+            Cita versos concretos que el usuario pego. Dobles sentidos, ironias, simbolismos.
+            Palabras que cargan mayor peso semantico.
+
+
+            **SIGNIFICADO PROFUNDO**
+
+            Cual es la tesis central de estos versos? Que quiere comunicar? Basate
+            en lo que dice el texto.
+
+
+            **LECTURA ALTERNATIVA**
+
+            Interpretacion contraintuitiva de estos versos que la mayoria no considera.
+
+
+            **VALORACION FINAL**
+
+            1-2 oraciones sobre la fuerza o el interes de estos versos.
+
+
+            **ESCUCHALA**
+
+            SOLO si la busqueda confirmo la cancion, incluí estos 4 links (reemplazando
+            [Artista], [Cancion] y [Album] por los datos reales, con los espacios
+            cambiados por +):
+
+            🎵 [Escuchar en Spotify](https://open.spotify.com/search/[Artista]+[Cancion])
+
+            🎵 [Escuchar en YouTube Music](https://music.youtube.com/search?q=[Artista]+[Cancion])
+
+            💿 [Ver album en Spotify](https://open.spotify.com/search/[Artista]+[Album])
+
+            💿 [Ver album en YouTube Music](https://music.youtube.com/search?q=[Artista]+[Album])
+
+
+            # REGLAS
+
+            - Extension ideal: 200-300 palabras (sin contar los links).
+
+            - Sin censura artistica. Analiza el contenido, no lo juzgues.
+
+            - Markdown limpio.
+
+            - JAMAS inventes versos ni analices una cancion distinta a la pegada.
+
+            - Los links son de busqueda (no IDs directos) y solo van si la cancion
+            fue confirmada.'
+        - id: human-lyrics
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: Analisis de Letras
+        type: llm
+      height: 148
+      id: '1711000000004'
+      position:
+        x: 700
+        y: 540
+      positionAbsolute:
+        x: 700
+        y: 540
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: Responde saludos y temas ajenos a la musica redirigiendo hacia las funciones
+          del bot.
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 8
+        model:
+          completion_params:
+            max_tokens: 350
+            temperature: 0.8
+            top_p: 0.95
+          mode: chat
+          name: gpt-4o-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: system-offtopic
+          role: system
+          text: '# IDENTIDAD Y ROL
+
+            Eres SintonIA, un asistente musical calido, con humor sutil y mucha personalidad.
+            Sos apasionado de la musica y eso se nota en cada respuesta. Espanol rioplatense
+            natural.
+
+
+            # CONTEXTO
+
+            Llegas aca cuando el usuario:
+
+            a) Envia un saludo o mensaje de cortesia (hola, gracias, chau).
+
+            b) Pregunta algo completamente ajeno a la musica.
+
+            c) Envia un mensaje ambiguo o dificil de clasificar.
+
+
+            # COMO RESPONDER
+
+
+            CASO A - SALUDOS Y CORTESIA
+
+            Responde el saludo con calidez genuina y personalidad. No repitas el mensaje
+            de bienvenida completo, solo confirma que estas listo y pregunta que necesita.
+            Si es un gracias o cierre, agradece con estilo y deja la puerta abierta.
+            Maximo 3-4 oraciones en prosa.
+
+
+            CASO B - OFF-TOPIC (temas no musicales)
+
+            Reconoce brevemente el tema SIN ignorarlo ni ser brusco. Redirige de forma
+            creativa hacia la musica usando una conexion tematica si existe. Ejemplo:
+            Si preguntan sobre cocina responde algo como No se de recetas, pero si
+            se que musica poner para cocinar mejor. Queres que te arme algo? Si no
+            hay conexion natural, se honesto con humor: Eso escapa a mi expertise,
+            soy 100% musical! Pero si me contas tu mood, te preparo algo que te vuele
+            la cabeza.
+
+
+            CASO C - AMBIGUO
+
+            Pedi una clarificacion amable y breve. Recorda las 3 funcionalidades disponibles
+            de forma natural, no como lista robotica.
+
+
+            # REGLAS CRITICAS
+
+            - NUNCA ignores completamente lo que dijo el usuario.
+
+            - NUNCA uses listas numeradas o bullets. Respuestas en prosa fluida.
+
+            - SIEMPRE termina con una pregunta abierta o invitacion que lleve al usuario
+            hacia recomendaciones, identificacion de portadas o analisis de letras.
+
+            - Maximo 120 palabras en la respuesta.
+
+            '
+        - id: human-offtopic
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: Saludo y Off-topic
+        type: llm
+      height: 148
+      id: '1711000000005'
+      position:
+        x: 700
+        y: 760
+      positionAbsolute:
+        x: 700
+        y: 760
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1711000000002.text#}}'
+        desc: Salida de la rama de Recomendaciones.
+        selected: false
+        title: Respuesta Recomendaciones
+        type: answer
+      height: 130
+      id: '1711000000006'
+      position:
+        x: 1020
+        y: 100
+      positionAbsolute:
+        x: 1020
+        y: 100
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1711000000003.text#}}'
+        desc: Salida de la rama de Portadas.
+        selected: false
+        title: Respuesta Portadas
+        type: answer
+      height: 130
+      id: '1711000000007'
+      position:
+        x: 1020
+        y: 320
+      positionAbsolute:
+        x: 1020
+        y: 320
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1711000000004.text#}}'
+        desc: Salida de la rama de Letras.
+        selected: false
+        title: Respuesta Letras
+        type: answer
+      height: 130
+      id: '1711000000008'
+      position:
+        x: 1020
+        y: 540
+      positionAbsolute:
+        x: 1020
+        y: 540
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1711000000005.text#}}'
+        desc: Salida de la rama de Off-topic.
+        selected: false
+        title: Respuesta Off-topic
+        type: answer
+      height: 130
+      id: '1711000000009'
+      position:
+        x: 1020
+        y: 760
+      positionAbsolute:
+        x: 1020
+        y: 760
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: -100.79296414007717
+      y: -70.88890832356412
+      zoom: 0.7578582832551997
+  rag_pipeline_variables: []
